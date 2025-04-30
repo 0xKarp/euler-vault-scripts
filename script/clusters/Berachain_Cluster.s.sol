@@ -58,6 +58,10 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
         cluster.hookTarget = address(0);
         cluster.hookedOps = 0;
 
+        //Proof of liquidity 
+        cluster.hookTargetOverride[HONEY] = 0x826e962E4216BFF7bAA8bEd30e498a7B84bA6ABA;
+        cluster.hookedOpsOverride[HONEY] = 17727;
+
         // define config flags here. if needed to be defined per asset, populate the configFlagsOverride mapping
         cluster.configFlags = 0;
 
