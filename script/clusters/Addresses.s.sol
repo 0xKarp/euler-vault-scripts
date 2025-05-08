@@ -91,6 +91,7 @@ abstract contract AddressesSonic {
     address internal constant PT_wOS = 0x46eb02b9F47634c4fab3110CC7ADc1C6311DfAC1;
     address internal constant PT_stS = 0x420df605D062F8611EFb3F203BF258159b8FfFdE;
     address internal constant PT_aUSDC = 0x930441Aa7Ab17654dF5663781CA0C02CC17e6643;
+    address internal constant x33 = 0x3333111A391cC08fa51353E9195526A70b333333;
 }
 
 abstract contract AddressesBerachain {
@@ -113,7 +114,8 @@ abstract contract AddressesBerachain {
     address internal constant iBERA = 0x9b6761bf2397Bb5a6624a856cC84A3A14Dcd3fe5;
     address internal constant iBGT = 0xac03CABA51e17c86c921E1f6CBFBdC91F8BB2E6b;
     address internal constant lBGT = 0xBaadCC2962417C01Af99fb2B7C75706B9bd6Babe;    
-    address internal constant stlBGT = 0xBaadCC2962417C01Af99fb2B7C75706B9bd6Babe;    
+    address internal constant stlBGT = 0xFace73a169e2CA2934036C8Af9f464b5De9eF0ca;    
+    address internal constant oriBGT = 0x69f1E971257419B1E9C405A553f252c64A29A30a;    
 }
 
 abstract contract AddressesBNB {

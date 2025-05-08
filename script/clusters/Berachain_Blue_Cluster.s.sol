@@ -9,14 +9,14 @@ import "./Addresses.s.sol";
 contract Cluster is ManageClusterBase, AddressesBerachain {
     function defineCluster() internal override {
         // define the path to the cluster addresses file here
-        cluster.clusterAddressesPath = "/script/clusters/Berachain_RED_Cluster.json";
+        cluster.clusterAddressesPath = "/script/clusters/Berachain_Blue_Cluster.json";
 
         // after the cluster is deployed, do not change the order of the assets in the .assets array. if done, it must be 
         // reflected in other the other arrays the ltvs matrix. IMPORTANT: do not define more than one vault for the same asset
         cluster.assets = [
          WBERA, 
-         HONEY, 
-         iBGT
+         lBGT, 
+         stlBGT
         ];
     }
 
@@ -31,7 +31,7 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
         // define fee receiver here and interest fee here. 
         // if needed to be defined per asset, populate the feeReceiverOverride and interestFeeOverride mappings
         cluster.feeReceiver = 0x50dE2Fb5cd259c1b99DBD3Bb4E7Aac76BE7288fC;
-        cluster.interestFee = 0.15e4;
+        cluster.interestFee = 0.20e4;
 
         // define max liquidation discount here. 
         // if needed to be defined per asset, populate the maxLiquidationDiscountOverride mapping
@@ -55,34 +55,32 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
         // the asset (vault) in the oracle router. 
         // refer to https://oracles.euler.finance/ for the list of available oracle adapters
         cluster.oracleProviders[WBERA    ] = "0xe6D9C66C0416C1c88Ca5F777D81a7F424D4Fa87b";
-        cluster.oracleProviders[HONEY    ] = "0x997d72fb46690f304C7DB92df9AA823323fb23B2";
-        cluster.oracleProviders[iBGT    ] = "0x16cE03d4d67fdA6727498eDbDE2e4FD0bF5e32D3";
+        cluster.oracleProviders[lBGT    ] = "0xA0153Da2Ee27BaC590612061c8d587fa32dD2887";
+        cluster.oracleProviders[stlBGT    ] = "ExternalVault|0xA0153Da2Ee27BaC590612061c8d587fa32dD2887";
+
 
 
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
-        cluster.supplyCaps[WBERA    ] = 1_000_000;
-        cluster.supplyCaps[HONEY    ] = 5_000_000;
-        cluster.supplyCaps[iBGT    ] = 500_000;
+        cluster.supplyCaps[WBERA    ] = 100_000_000;
+        cluster.supplyCaps[lBGT    ] = 350_000;
+        cluster.supplyCaps[stlBGT    ] = 300_000;
+
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
-        cluster.borrowCaps[WBERA    ] = 900_000;
-        cluster.borrowCaps[HONEY    ] = 4_500_000;
-        cluster.borrowCaps[iBGT    ] = type(uint256).max;
+        cluster.borrowCaps[WBERA    ] = 90_000_000;
+        cluster.borrowCaps[lBGT    ] = 300_000;
+        cluster.borrowCaps[stlBGT    ] = type(uint256).max;
 
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
         // to generate the IRM parameters, use the following command:
         // node lib/evk-periphery/script/utils/calculate-irm-linear-kink.js borrow <baseIr> <kinkIr> <maxIr> <kink>
         {
-           // Base=0% APY  Kink(75%)=175.00% APY  Max=375.00% APY
-            uint256[4] memory irmBERA  = [uint256(0), uint256(9951593935), uint256(16129845658), uint256(3221225472)];
-
-            // Base=0% APY,  Kink(90%)=10.0% APY  Max=49.5% APY
-            uint256[4] memory irmMinor = [uint256(0), uint256(781343251), uint256(22637222055), uint256(3865470566)];
-
+           // Base=0% APY  Kink(75%)=350%.00% APY  Max=1000.00% APY
+            uint256[4] memory irmBERA  = [uint256(0), uint256(12330275055), uint256(65946860515), uint256(3865470566)];
 
             cluster.kinkIRMParams[WBERA    ] = irmBERA;
-            cluster.kinkIRMParams[HONEY    ] = irmMinor;
+            cluster.kinkIRMParams[lBGT    ] = irmBERA;
         }
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
@@ -94,10 +92,10 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
         // define liquidation LTV values here. columns are liability vaults, rows are collateral vaults
         cluster.ltvs = [
             //                  0                1        2      
-            //                  WBERA            HONEY    iBGT 
-            /* 0  WBERA     */ [uint16(0.000e4), 0.000e4, 0.000e4],
-            /* 1  HONEY     */ [uint16(0.000e4), 0.000e4, 0.000e4],
-            /* 1  iBGT      */ [uint16(0.800e4), 0.700e4, 0.000e4]
+            //                  WBERA            lBGT    stlBGT 
+            /* 0  WBERA    */ [uint16(0.000e4), 0.000e4, 0.000e4],
+            /* 1  lBGT     */ [uint16(0.000e4), 0.000e4, 0.000e4],
+            /* 1  stlBGT   */ [uint16(0.825e4), 0.825e4, 0.000e4]
         ];
     }
 

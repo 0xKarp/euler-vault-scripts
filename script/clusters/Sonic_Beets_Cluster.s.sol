@@ -23,7 +23,7 @@ contract Cluster is ManageClusterBase, AddressesSonic {
     function configureCluster() internal override {
         // define the governors here
         cluster.oracleRoutersGovernor = 0xB672Ea44A1EC692A9Baf851dC90a1Ee3DB25F1C4;
-        cluster.vaultsGovernor = 0xf5bd3a5Aed111B2A54cE0683Ec647f6642b17Dc7;
+        cluster.vaultsGovernor = 0xB672Ea44A1EC692A9Baf851dC90a1Ee3DB25F1C4;
 
         // define unit of account here
         cluster.unitOfAccount = USD;
@@ -76,8 +76,8 @@ contract Cluster is ManageClusterBase, AddressesSonic {
         // to generate the IRM parameters, use the following command:
         // node lib/evk-periphery/script/utils/calculate-irm-linear-kink.js borrow <baseIr> <kinkIr> <maxIr> <kink>
         {
-            // Base=0% APY,  Kink(90%)=15.00% APY  Max=100.00% APY 0xc675Fe14c7baF2AB052096e0E5771ca3acd019c3 
-            uint256[4] memory irmwS = [uint256(0), uint256(1145746606), uint256(40829424352), uint256(3865470566)];
+            // Base=0% APY,  Kink(90%)6.00% APY  Max:75.00% APY 0xc675Fe14c7baF2AB052096e0E5771ca3acd019c3 
+            uint256[4] memory irmwS = [uint256(0), uint256(321521611), uint256(38395312288), uint256(3865470566)];
 
             cluster.kinkIRMParams[wS ] = irmwS;
         }
