@@ -29,7 +29,17 @@ contract Cluster is ManageClusterBase, AddressesSonic
             PT_wOS, 
             PT_stS,
             PT_aUSDC, 
-            x33
+            x33,
+            XUSD,
+            new_XUSD, 
+            yUSD,
+            PT_wstkscETH_DEC,
+            PT_wstkscUSD_DEC,
+            wmetaUSD, 
+            wmetaS, 
+            hlp0,
+            xBTC,
+            xETH
         ];
     }
 
@@ -67,7 +77,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
         // for pricing, the string should be preceeded by "ExternalVault|" prefix. this is in order to correctly resolve 
         // the asset (vault) in the oracle router. 
         // refer to https://oracles.euler.finance/ for the list of available oracle adapters
-         cluster.oracleProviders[WETH     ] = "0xF9347838C10F72332c1b64080743350069233395";
+        cluster.oracleProviders[WETH     ] = "0xF9347838C10F72332c1b64080743350069233395";
         cluster.oracleProviders[USDC     ] = "0xdC2492409Ef8A0574cf567232b8B55919505e0Ea";
         cluster.oracleProviders[scETH    ] = "0x56A39f7907Ca26D87f8183193528d74503Ef9B11";
         cluster.oracleProviders[scUSD    ] = "0x5ec86ad76f29a278E8F1373927Af4854be54A963";
@@ -78,10 +88,23 @@ contract Cluster is ManageClusterBase, AddressesSonic
         cluster.oracleProviders[wOS      ] = "ExternalVault|0xf62820B7E0146cC436d99f962450c5cDDca3Db35";
         cluster.oracleProviders[PT_wstkscETH      ] = "0xBce127EfD2a546afC94C9776f7Ce138240182Cb9";
         cluster.oracleProviders[PT_wstkscUSD      ] = "0x997d72fb46690f304C7DB92df9AA823323fb23B2";
-        cluster.oracleProviders[PT_wOS      ] = "0x16cE03d4d67fdA6727498eDbDE2e4FD0bF5e32D3";
-        cluster.oracleProviders[PT_stS      ] = "0xB572C563F6F900682F42E07e5ACa55564EC6C9F5";
+        cluster.oracleProviders[PT_wOS      ] = "0xd9eDCB82743CAe3b03589227e9068B4Aa06Ef2b8";
+        cluster.oracleProviders[PT_stS      ] = "0xb045De193C381bc54836d771720A5daA1476576c";
         cluster.oracleProviders[PT_aUSDC      ] = "0x1FcfB78505FAbDC221483b622d1aA1393c265942";
         cluster.oracleProviders[x33      ] = "ExternalVault|0xc7409cead5b975e8865db9b3e7717348d753aaec";
+        cluster.oracleProviders[XUSD      ] = "0xB5150D01b9a0E64D983C2bfbA54418523827099E";
+        cluster.oracleProviders[new_XUSD      ] = "0x8823ead0700e9BCdc649EAe9108b57ebF49B0444";
+        cluster.oracleProviders[yUSD      ] = "ExternalVault|0xdC2492409Ef8A0574cf567232b8B55919505e0Ea";
+        cluster.oracleProviders[PT_wstkscETH_DEC      ] = "0x077AD2f37546a317aD46F6C3CfAbb983C9Cc259f";
+        cluster.oracleProviders[PT_wstkscUSD_DEC      ] = "0xF9eA198e46c8b20265F116165fffc99dDEDfDca6";
+        cluster.oracleProviders[wmetaUSD      ] = "ExternalVault|0xBCE0CdFFcec47bf88fd287DCE165E0C5757BbCCc";
+        cluster.oracleProviders[wmetaS      ] = "ExternalVault|0xcB951d10EF9172290B023D826f0A5Bd65d8CF27F";
+        cluster.oracleProviders[hlp0      ] = "0xEd29690A4d7f1b63807957fb71149A8dcfD820a4";
+        cluster.oracleProviders[xBTC      ] = "0x34612D8ce143AD9a7BdA37D45001BaCFbe167b7f";
+        cluster.oracleProviders[xETH      ] = "0x00589d12B35E8844672d417a825A3b639c51EFc7";
+
+
+
 
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
@@ -100,6 +123,20 @@ contract Cluster is ManageClusterBase, AddressesSonic
         cluster.supplyCaps[PT_stS      ] = 5_000_000;
         cluster.supplyCaps[PT_aUSDC      ] = 15_000_000;
         cluster.supplyCaps[x33      ] = 500_000;
+        cluster.supplyCaps[XUSD      ] = 0;
+        cluster.supplyCaps[new_XUSD      ] = 16_000_000;
+        cluster.supplyCaps[yUSD      ] = 8_000_000;
+        cluster.supplyCaps[PT_wstkscETH_DEC      ] = 2_500;
+        cluster.supplyCaps[PT_wstkscUSD_DEC      ] = 20_000_000;
+        cluster.supplyCaps[wmetaUSD      ] = 1_000_000;
+        cluster.supplyCaps[wmetaS      ] = 2_000_000;
+        cluster.supplyCaps[hlp0      ] = 3_000_000;
+        cluster.supplyCaps[xBTC      ] = 10;
+        cluster.supplyCaps[xETH      ] = 500;
+
+
+
+
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
         cluster.borrowCaps[WETH     ] = 5_000;
@@ -117,6 +154,18 @@ contract Cluster is ManageClusterBase, AddressesSonic
         cluster.borrowCaps[PT_stS      ] = type(uint256).max;
         cluster.borrowCaps[PT_aUSDC      ] = type(uint256).max;
         cluster.borrowCaps[x33      ] = type(uint256).max;
+        cluster.borrowCaps[XUSD      ] = type(uint256).max;
+        cluster.borrowCaps[new_XUSD      ] = type(uint256).max;
+        cluster.borrowCaps[yUSD      ] = type(uint256).max;
+        cluster.borrowCaps[PT_wstkscETH_DEC      ] = type(uint256).max;
+        cluster.borrowCaps[PT_wstkscUSD_DEC      ] = type(uint256).max;
+        cluster.borrowCaps[wmetaUSD      ] = type(uint256).max;
+        cluster.borrowCaps[wmetaS      ] = type(uint256).max;
+        cluster.borrowCaps[hlp0      ] = type(uint256).max;
+        cluster.borrowCaps[xBTC      ] = type(uint256).max;
+        cluster.borrowCaps[xETH      ] = type(uint256).max;
+
+
 
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
         // to generate the IRM parameters, use the following command:
@@ -135,7 +184,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
             uint256[4] memory irmMajor  = [uint256(0), uint256(706470369), uint256(23557417865), uint256(3865470566)];
 
             cluster.kinkIRMParams[WETH     ] = irmETH;
-            cluster.kinkIRMParams[USDC     ] = irmUSDC;
+            cluster.kinkIRMParams[USDC     ] = irmMajor;
             cluster.kinkIRMParams[scETH    ] = irmETH;
             cluster.kinkIRMParams[scUSD    ] = irmMajor;
             cluster.kinkIRMParams[wS       ] = irmwS;
@@ -150,29 +199,38 @@ contract Cluster is ManageClusterBase, AddressesSonic
     
         // define liquidation LTV values here. columns are liability vaults, rows are collateral vaults
         cluster.ltvs = [
-          //                     0                1         2        3       4        5         6       7          8        9        10       11       12      13            
-            //                     WETH             USDC     scETH    scUSD   wstkscETH wstkscUSD wS      stS      wOS      PT_wstkscETH PT_wstkscUSD PT_wOS   PT_stS PT-aUSDC
-            /* 0  WETH         */ [uint16(0.000e4), 0.780e4, 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 1  USDC         */ [uint16(0.780e4), 0.000e4, 0.780e4, 0.915e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 2  scETH        */ [uint16(0.915e4), 0.780e4, 0.000e4, 0.780e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 3  scUSDC       */ [uint16(0.780e4), 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 4  wstkscETH    */ [uint16(0.915e4), 0.780e4, 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 5  wstkscUSD    */ [uint16(0.780e4), 0.915e4, 0.780e4, 0.915e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 6  wS           */ [uint16(0.780e4), 0.780e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 7  stS          */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 8  wOS          */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 9  PT_wstkscETH */ [uint16(0.915e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 10  PT_wstkscUSD*/ [uint16(0.000e4), 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 11  PT_wOS      */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 12  PT_stS      */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 13  PT_aUSDC    */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 14  x33         */ [uint16(0.000e4), 0.780e4, 0.000e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4]
+          //                        0                1         2        3       4        5         6       7          8        9        10       11       12      13        14       15       16       17       18       19       20       21       22       23       24
+            //                     WETH             USDC     scETH    scUSD   wstkscETH wstkscUSD wS      stS      wOS      PT_wstkscETH PT_wstkscUSD PT_wOS   PT_stS PT-aUSDC    XUSD     new_XUSD yUSD     PT-wstkETHDEC  PTwstkUSDDEC   wmetaS   Hlp0     xBTC.    xETH
+            /* 0  WETH            */ [uint16(0.000e4), 0.780e4, 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 1  USDC            */ [uint16(0.780e4), 0.000e4, 0.780e4, 0.915e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 2  scETH           */ [uint16(0.915e4), 0.780e4, 0.000e4, 0.780e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 3  scUSDC          */ [uint16(0.780e4), 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 4  wstkscETH       */ [uint16(0.915e4), 0.780e4, 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 5  wstkscUSD       */ [uint16(0.780e4), 0.915e4, 0.780e4, 0.915e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 6  wS              */ [uint16(0.780e4), 0.780e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 7  stS             */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 8  wOS             */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 9  PT_wstkscETH    */ [uint16(0.915e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 10  PT_wstkscUSD   */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 11  PT_wOS         */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 12  PT_stS         */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 13  PT_aUSDC       */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 14  x33            */ [uint16(0.000e4), 0.780e4, 0.000e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 15  XUSD           */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 16  new_XUSD       */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 17  yUSD           */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 18  PT_wstkscETHDEC*/ [uint16(0.915e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 19  PT_wstkscUSDDE */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 20  wmetaUSD       */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 21  wmetaS         */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 22  hlp0           */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 23  xBTC           */ [uint16(0.000e4), 0.780e4, 0.000e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 24  xETH           */ [uint16(0.915e4), 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4]
+
         ];
 
         cluster.borrowLTVsOverride[1][3] = 0;
         cluster.borrowLTVsOverride[3][1] = 0;
-        cluster.borrowLTVsOverride[11][6] = 0;
-        cluster.borrowLTVsOverride[12][6] = 0;
     }
 
     function postOperations() internal view override {

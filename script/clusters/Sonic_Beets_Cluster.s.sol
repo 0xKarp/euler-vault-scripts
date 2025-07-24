@@ -16,7 +16,8 @@ contract Cluster is ManageClusterBase, AddressesSonic {
         cluster.assets = [
             wS, 
             stS, 
-            PT_stS
+            PT_stS, 
+            PT_stS_DEC
         ];
     }
 
@@ -60,17 +61,23 @@ contract Cluster is ManageClusterBase, AddressesSonic {
         // refer to https://oracles.euler.finance/ for the list of available oracle adapters
         cluster.oracleProviders[wS ] = "0xc59486164BDFEe0843DB80d2987Ec0E1028f7D84";
         cluster.oracleProviders[stS ] = "0x2c1bc59F07af5D3dFA556bbaE60179B54DE27b4d";
-        cluster.oracleProviders[PT_stS ] = "0xB572C563F6F900682F42E07e5ACa55564EC6C9F5";
+        cluster.oracleProviders[PT_stS ] = "0xb045De193C381bc54836d771720A5daA1476576c";
+        cluster.oracleProviders[PT_stS_DEC ] = "0xC18965CC32063166dC411CC9029BF8B1d8800294";
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
         cluster.supplyCaps[wS ] = 50_000_000;
         cluster.supplyCaps[stS ] = 25_000_000;
         cluster.supplyCaps[PT_stS ] = 25_000_000;
+        cluster.supplyCaps[PT_stS_DEC ] = 25_000_000;
+
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
         cluster.borrowCaps[wS ] = 45_000_000;
         cluster.borrowCaps[stS ] = type(uint256).max;
         cluster.borrowCaps[PT_stS] = type(uint256).max; // no cap defined
+        cluster.borrowCaps[PT_stS_DEC] = type(uint256).max; // no cap defined
+
+
 
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
         // to generate the IRM parameters, use the following command:
@@ -90,11 +97,12 @@ contract Cluster is ManageClusterBase, AddressesSonic {
     
         // define liquidation LTV values here. columns are liability vaults, rows are collateral vaults
         cluster.ltvs = [
-        //                0               1       2       
+        //                0               1       2     3  
         //                wS              stS     PT_stS    
-        /* 0  wS    */ [uint16(0.00e4), 0.00e4, 0.00e4],
-        /* 1  stS   */ [uint16(0.95e4), 0.00e4, 0.00e4],
-        /* 2  PT_st */ [uint16(0.95e4), 0.00e4, 0.00e4]
+        /* 0  wS       */ [uint16(0.00e4), 0.00e4, 0.00e4, 0.00e4], 
+        /* 1  stS      */ [uint16(0.95e4), 0.00e4, 0.00e4, 0.00e4], 
+        /* 2  PT_st    */ [uint16(0.95e4), 0.00e4, 0.00e4, 0.00e4],  
+        /* 3  PT_st DEC*/ [uint16(0.95e4), 0.00e4, 0.00e4, 0.00e4]
         ];
     }
 

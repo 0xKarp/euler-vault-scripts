@@ -92,6 +92,17 @@ abstract contract AddressesSonic {
     address internal constant PT_stS = 0x420df605D062F8611EFb3F203BF258159b8FfFdE;
     address internal constant PT_aUSDC = 0x930441Aa7Ab17654dF5663781CA0C02CC17e6643;
     address internal constant x33 = 0x3333111A391cC08fa51353E9195526A70b333333;
+    address internal constant XUSD = 0xE2Fc85BfB48C4cF147921fBE110cf92Ef9f26F94;
+    address internal constant new_XUSD = 0x6202B9f02E30E5e1c62Cc01E4305450E5d83b926;
+    address internal constant yUSD = 0x4772D2e014F9fC3a820C444e3313968e9a5C8121;
+    address internal constant PT_wstkscETH_DEC = 0x7e52f587f5B870D4C2cac8559ac4c49742D31a28;
+    address internal constant PT_wstkscUSD_DEC = 0x0Fb682C9692AddCc1769f4D4d938c54420D54fA3;
+    address internal constant PT_stS_DEC = 0xE2BC30A4896Ff4c52ADCb180213666d2D6B21c6d;
+    address internal constant wmetaUSD = 0xAaAaaAAac311D0572Bffb4772fe985A750E88805;
+    address internal constant wmetaS = 0xbbbbbbBBbd0aE69510cE374A86749f8276647B19;
+    address internal constant hlp0 = 0x3D75F2BB8aBcDBd1e27443cB5CBCE8A668046C81;
+    address internal constant xBTC = 0xB88fF15ae5f82c791e637b27337909BcF8065270;
+    address internal constant xETH = 0x16af6b1315471Dc306D47e9CcEfEd6e5996285B6;
 }
 
 abstract contract AddressesBerachain {
@@ -131,4 +142,12 @@ abstract contract AddressesBNB {
     address internal constant sUSDe = 0x211Cc4DD073734dA055fbF44a2b4667d5E5fE5d2;
     address internal constant USDe = 0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34;
     address internal constant PT_sUSDE = 0xDD809435ba6c9d6903730f923038801781cA66ce;
+}
+
+abstract contract AddressesBOB {
+    address internal constant USD = address(840);
+    address internal constant LBTC = 0xA45d4121b3D47719FF57a947A9d961539Ba33204;
+    address internal constant WBTC = 0x03C7054BCB39f7b2e5B2c7AcB37583e32D70Cfa3;
+    address internal constant HybridBTC_pendle = 0x9998e05030Aee3Af9AD3df35A34F5C51e1628779;
+    address internal constant satUSD = 0x78Fea795cBFcC5fFD6Fb5B845a4f53d25C283bDB;
 }

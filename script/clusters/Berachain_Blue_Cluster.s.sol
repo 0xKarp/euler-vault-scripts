@@ -16,7 +16,8 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
         cluster.assets = [
          WBERA, 
          lBGT, 
-         stlBGT
+         stlBGT, 
+         NECT
         ];
     }
 
@@ -30,7 +31,7 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
 
         // define fee receiver here and interest fee here. 
         // if needed to be defined per asset, populate the feeReceiverOverride and interestFeeOverride mappings
-        cluster.feeReceiver = 0x50dE2Fb5cd259c1b99DBD3Bb4E7Aac76BE7288fC;
+        cluster.feeReceiver = 0x7C93e291007ce9d50949D71339BBE3B76562cFeb;
         cluster.interestFee = 0.20e4;
 
         // define max liquidation discount here. 
@@ -43,6 +44,13 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
 
         // define hook target and hooked ops here. 
         // if needed to be defined per asset, populate the hookTargetOverride and hookedOpsOverride mappings
+        cluster.hookTargetOverride[WBERA] = 0x312B4F502187408Dd903F6d6233C7d809D52EcB7;
+        cluster.hookedOpsOverride[WBERA] = 17727;
+
+        cluster.hookTargetOverride[lBGT] = 0x7Ae84AC6148C0f26E9dFc6024f36A18D934c0aBE;
+        cluster.hookedOpsOverride[lBGT] = 17727;
+
+
         cluster.hookTarget = address(0);
         cluster.hookedOps = 0;
 
@@ -57,27 +65,29 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
         cluster.oracleProviders[WBERA    ] = "0xe6D9C66C0416C1c88Ca5F777D81a7F424D4Fa87b";
         cluster.oracleProviders[lBGT    ] = "0xA0153Da2Ee27BaC590612061c8d587fa32dD2887";
         cluster.oracleProviders[stlBGT    ] = "ExternalVault|0xA0153Da2Ee27BaC590612061c8d587fa32dD2887";
-
+        cluster.oracleProviders[NECT    ] = "0xA5D8658e0Aee09A93206478B2FaDFD0929B431af";
 
 
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
-        cluster.supplyCaps[WBERA    ] = 100_000_000;
-        cluster.supplyCaps[lBGT    ] = 350_000;
-        cluster.supplyCaps[stlBGT    ] = 300_000;
+        cluster.supplyCaps[WBERA    ] = 10_000_000;
+        cluster.supplyCaps[lBGT    ] = 1_000_000;
+        cluster.supplyCaps[stlBGT    ] = 1_000_000;
+        cluster.supplyCaps[NECT    ] = 2_000_000;
 
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
-        cluster.borrowCaps[WBERA    ] = 90_000_000;
-        cluster.borrowCaps[lBGT    ] = 300_000;
+        cluster.borrowCaps[WBERA    ] = 8_000_000;
+        cluster.borrowCaps[lBGT    ] = 500_000;
         cluster.borrowCaps[stlBGT    ] = type(uint256).max;
+        cluster.borrowCaps[NECT    ] = type(uint256).max;
 
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
         // to generate the IRM parameters, use the following command:
         // node lib/evk-periphery/script/utils/calculate-irm-linear-kink.js borrow <baseIr> <kinkIr> <maxIr> <kink>
         {
-           // Base=0% APY  Kink(75%)=350%.00% APY  Max=1000.00% APY
-            uint256[4] memory irmBERA  = [uint256(0), uint256(12330275055), uint256(65946860515), uint256(3865470566)];
+           // Base=0% APY  Kink(90%)=350%.00% APY  Max=1000.00% APY
+            uint256[4] memory irmBERA  = [uint256(0), uint256(8293002415), uint256(102282314231), uint256(3865470566)];
 
             cluster.kinkIRMParams[WBERA    ] = irmBERA;
             cluster.kinkIRMParams[lBGT    ] = irmBERA;
@@ -91,11 +101,13 @@ contract Cluster is ManageClusterBase, AddressesBerachain {
     
         // define liquidation LTV values here. columns are liability vaults, rows are collateral vaults
         cluster.ltvs = [
-            //                  0                1        2      
-            //                  WBERA            lBGT    stlBGT 
-            /* 0  WBERA    */ [uint16(0.000e4), 0.000e4, 0.000e4],
-            /* 1  lBGT     */ [uint16(0.000e4), 0.000e4, 0.000e4],
-            /* 1  stlBGT   */ [uint16(0.825e4), 0.825e4, 0.000e4]
+            //                  0                1        2       3      
+            //                  WBERA            lBGT    stlBGT   NECT 
+            /* 0  WBERA    */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4],
+            /* 1  lBGT     */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4],
+            /* 2  stlBGT   */ [uint16(0.825e4), 0.825e4, 0.000e4, 0.000e4],
+            /* 3  NECT     */ [uint16(0.915e4), 0.915e4, 0.000e4, 0.000e4]
+
         ];
     }
 
