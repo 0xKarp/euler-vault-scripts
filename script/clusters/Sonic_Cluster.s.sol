@@ -114,7 +114,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
         cluster.supplyCaps[scUSD    ] = 100_000_000;
         cluster.supplyCaps[wstkscETH] = 10_000;
         cluster.supplyCaps[wstkscUSD] = 5_000_000;
-        cluster.supplyCaps[wS       ] = 100_000_000;
+        cluster.supplyCaps[wS       ] = 0;
         cluster.supplyCaps[stS      ] = 100_000_000;
         cluster.supplyCaps[wOS      ] = 50_000_000;
         cluster.supplyCaps[PT_wstkscETH      ] = 2_500;
@@ -122,14 +122,14 @@ contract Cluster is ManageClusterBase, AddressesSonic
         cluster.supplyCaps[PT_wOS      ] = 1_000_000;
         cluster.supplyCaps[PT_stS      ] = 5_000_000;
         cluster.supplyCaps[PT_aUSDC      ] = 15_000_000;
-        cluster.supplyCaps[x33      ] = 500_000;
+        cluster.supplyCaps[x33      ] = 90_000;
         cluster.supplyCaps[XUSD      ] = 0;
         cluster.supplyCaps[new_XUSD      ] = 16_000_000;
         cluster.supplyCaps[yUSD      ] = 8_000_000;
         cluster.supplyCaps[PT_wstkscETH_DEC      ] = 2_500;
         cluster.supplyCaps[PT_wstkscUSD_DEC      ] = 20_000_000;
         cluster.supplyCaps[wmetaUSD      ] = 1_000_000;
-        cluster.supplyCaps[wmetaS      ] = 2_000_000;
+        cluster.supplyCaps[wmetaS      ] = 0;
         cluster.supplyCaps[hlp0      ] = 3_000_000;
         cluster.supplyCaps[xBTC      ] = 10;
         cluster.supplyCaps[xETH      ] = 500;
@@ -192,7 +192,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
         }
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
-        cluster.rampDuration = 56 days;
+        cluster.rampDuration = 1 days;
 
         // define the spread between borrow and liquidation LTV
         cluster.spreadLTV = 0.01e4;
@@ -207,7 +207,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
             /* 3  scUSDC          */ [uint16(0.780e4), 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 4  wstkscETH       */ [uint16(0.915e4), 0.780e4, 0.915e4, 0.780e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 5  wstkscUSD       */ [uint16(0.780e4), 0.915e4, 0.780e4, 0.915e4, 0.000e4, 0.000e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 6  wS              */ [uint16(0.780e4), 0.780e4, 0.780e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 6  wS              */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 7  stS             */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 8  wOS             */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 9  PT_wstkscETH    */ [uint16(0.915e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
@@ -222,7 +222,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
             /* 18  PT_wstkscETHDEC*/ [uint16(0.915e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 19  PT_wstkscUSDDE */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 20  wmetaUSD       */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
-            /* 21  wmetaS         */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 21  wmetaS         */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 22  hlp0           */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 23  xBTC           */ [uint16(0.000e4), 0.780e4, 0.000e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 24  xETH           */ [uint16(0.915e4), 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4]

@@ -16,8 +16,10 @@ contract Cluster is ManageClusterBase, AddressesBOB {
         cluster.assets = [
          LBTC,
          WBTC,
+         new_WBTC, 
          HybridBTC_pendle,
-         satUSD
+         satUSD,
+         newsatUSD
         ];
     }
 
@@ -57,24 +59,30 @@ contract Cluster is ManageClusterBase, AddressesBOB {
         // refer to https://oracles.euler.finance/ for the list of available oracle adapters
         cluster.oracleProviders[LBTC    ] = "0xEd29690A4d7f1b63807957fb71149A8dcfD820a4";
         cluster.oracleProviders[WBTC   ] = "0xF2b8616744502851343c52DA76e9adFb97f08b91";
+        cluster.oracleProviders[new_WBTC   ] = "0x421B5623A02dE8B2E7A5F83279F12EB1fC81D19d";
         cluster.oracleProviders[HybridBTC_pendle    ] = "0x997d72fb46690f304C7DB92df9AA823323fb23B2";
-        cluster.oracleProviders[satUSD    ] = "";
+        cluster.oracleProviders[satUSD    ] = "0x70F58c13047845e3febC0e96dd5e4724F8EA65BA";
+        cluster.oracleProviders[newsatUSD    ] = "0x36398c15cCbE5Fa2874ffB07F12555f1e584b6FB";
 
       
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount
         cluster.supplyCaps[LBTC    ] = 1000;
-        cluster.supplyCaps[WBTC    ] = 1000;
+        cluster.supplyCaps[WBTC    ] = 0;
+        cluster.supplyCaps[new_WBTC    ] = 1000;
         cluster.supplyCaps[HybridBTC_pendle    ] = 1000;
-        cluster.supplyCaps[satUSD    ] = 5_000_000;
+        cluster.supplyCaps[satUSD    ] = 0;
+        cluster.supplyCaps[newsatUSD    ] = 5_000_000;
 
 
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
         cluster.borrowCaps[LBTC    ] = 900;
-        cluster.borrowCaps[WBTC   ] = 900;
+        cluster.borrowCaps[WBTC   ] = 0;
+        cluster.borrowCaps[new_WBTC   ] = 900;
         cluster.borrowCaps[HybridBTC_pendle    ] = type(uint256).max;
-        cluster.borrowCaps[satUSD    ] = 4_000_000;
+        cluster.borrowCaps[satUSD    ] = type(uint256).max;
+        cluster.borrowCaps[newsatUSD    ] = 4_000_000;
 
 
         // define IRM classes here and assign them to the assets. if asset is not meant to be borrowable, no IRM is needed.
@@ -90,23 +98,26 @@ contract Cluster is ManageClusterBase, AddressesBOB {
 
             cluster.kinkIRMParams[LBTC    ] = irmBTC;
             cluster.kinkIRMParams[WBTC    ] = irmBTC;
-            cluster.kinkIRMParams[satUSD    ] = irmStable;
+            cluster.kinkIRMParams[new_WBTC    ] = irmBTC;
+            cluster.kinkIRMParams[newsatUSD    ] = irmStable;
         }
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
-        cluster.rampDuration = 7 days;
+        cluster.rampDuration = 2 days;
 
         // define the spread between borrow and liquidation LTV
         cluster.spreadLTV = 0.02e4;
     
         // define liquidation LTV values here. columns are liability vaults, rows are collateral vaults
         cluster.ltvs = [
-            //                  0                1        2        3             
-            //                  LBTC             WBTC     Hybrid   satUSD  
-            /* 0  LBTC     */ [uint16(0.000e4), 0.965e4, 0.000e4, 0.000e4],
-            /* 1  WBTC     */ [uint16(0.965e4), 0.000e4, 0.000e4, 0.000e4],
-            /* 2  Hybrid   */ [uint16(0.915e4), 0.915e4, 0.000e4, 0.000e4],
-            /* 3  satUSD   */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4]
+            //                  0                1        2        3        4        5          
+            //                  LBTC             WBTC     newWBTC  Hybrid   satUSD  newsatUSD
+            /* 0  LBTC     */ [uint16(0.000e4), 0.965e4, 0.965e4, 0.000e4, 0.000e4, 0.860e4],
+            /* 1  WBTC     */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 2  newWBTC  */ [uint16(0.965e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.860e4],
+            /* 3  Hybrid   */ [uint16(0.915e4), 0.915e4, 0.915e4, 0.000e4, 0.000e4, 0.860e4],
+            /* 4  satUSD   */ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
+            /* 5  newsatUSD*/ [uint16(0.000e4), 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4]
         ];
     }
 
