@@ -16,17 +16,17 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
         cluster.assets = [
             WETH, 
             ezETH,
-            PZETH,
-            inwstETHs,
-            wstETH,
-            cbETH,
+    //        PZETH,
+    //        inwstETHs,
+            wstETH
+      /*      cbETH,
             RETH,
-            WOETH, 
-            ETH+,
+            WOETH,  
+            ETHPLUS,
             WEETH, 
             rsETH,
             amphrETH,
-            STEAKLRT
+            STEAKLRT*/
         ];
     }
 
@@ -66,17 +66,17 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
         // refer to https://oracles.euler.finance/ for the list of available oracle adapters
         cluster.oracleProviders[WETH ] = "0x10674C8C1aE2072d4a75FE83f1E159425fd84E1D";
         cluster.oracleProviders[ezETH ] = "0x0F239a09D9B4f048d2EfE36a4204692F8DF5B564";
-        cluster.oracleProviders[PZETH ] = "0x0E45B0bc6D05872E355cca26f14ec5519E302db6";
-        cluster.oracleProviders[inwstETHs ] = "";
+     //   cluster.oracleProviders[PZETH ] = "0x0E45B0bc6D05872E355cca26f14ec5519E302db6";
+       // cluster.oracleProviders[inwstETHs ] = "";
         cluster.oracleProviders[wstETH ] = "0x02dd5B7ab536629d2235276aBCDf8eb3Af9528D7";
-        cluster.oracleProviders[cbETH ] = "0x8710019824E557F907Fb0B8BD23d610d74dD7444";
+    /*    cluster.oracleProviders[cbETH ] = "0x8710019824E557F907Fb0B8BD23d610d74dD7444";
         cluster.oracleProviders[RETH ] = "0xeb3Ed6A68C69659BfF24A4b996644aaCba68c4ec";
-        cluster.oracleProviders[WOETH ] = ETH -> "0xC499881FCc94d6755532e2C80b474858a564D637";
-        cluster.oracleProviders[ETH+ ] = "0x9c32824d98DBdBDC1c0C47f849E232DF3c5c66ec";
+        cluster.oracleProviders[WOETH ] = "0xC499881FCc94d6755532e2C80b474858a564D637";
+        cluster.oracleProviders[ETHPLUS ] = "0x9c32824d98DBdBDC1c0C47f849E232DF3c5c66ec";
         cluster.oracleProviders[WEETH ] = "0x175b1A1347F207AA0529430012385A14C46D9638";
         cluster.oracleProviders[rsETH ] = "0xd9274249FD71413342F75168c476CC357B17A3A1";
-        cluster.oracleProviders[amphrETH ] = ETH -> "0x517Cb608a08875FF60407F0209a87e093955A6C6";
-        cluster.oracleProviders[STEAKLRT ] = ETH -> "0xc09B45b31b7DD7B7bEcb348f1Df192C6948986B9";
+        cluster.oracleProviders[amphrETH ] =  "0x517Cb608a08875FF60407F0209a87e093955A6C6";
+        cluster.oracleProviders[STEAKLRT ] =  "0xc09B45b31b7DD7B7bEcb348f1Df192C6948986B9";*/
 
 
         // define supply caps here. 0 means no supply can occur, type(uint256).max means no cap defined hence max amount

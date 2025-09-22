@@ -8,10 +8,11 @@ abstract contract AddressesEthereum {
     address internal constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
     address internal constant wstETH = 0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0;
     address internal constant cbETH = 0xBe9895146f7AF43049ca1c1AE358B0541Ea49704;
-    address internal constant weETH = 0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee;
+    address internal constant WEETH = 0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee;
     address internal constant ezETH = 0xbf5495Efe5DB9ce00f80364C8B423567e58d2110;
     address internal constant RETH = 0xae78736Cd615f374D3085123A210448E74Fc6393;
     address internal constant mETH = 0xd5F7838F5C461fefF7FE49ea5ebaF7728bB0ADfa;
+    address internal constant ETHPLUS = 0xE72B141DF173b999AE7c1aDcbF60Cc9833Ce56a8;
     address internal constant rsETH = 0xA1290d69c65A6Fe4DF752f95823fae25cB99e5A7;
     address internal constant sfrxETH = 0xac3E018457B222d93114458476f3E3416Abbe38F;
     address internal constant ETHx = 0xA35b1B31Ce002FBF2058D22F30f95D405200A15b;

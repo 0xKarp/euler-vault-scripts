@@ -23,7 +23,7 @@ contract Cluster is ManageClusterBase, AddressesBNB {
          BTCB,
          sUSDe,
          USDe, 
-         PT-sUSDE
+         PT_sUSDE
         ];
     }
 
@@ -70,7 +70,7 @@ contract Cluster is ManageClusterBase, AddressesBNB {
         cluster.oracleProviders[BTCB    ] = "0x5939Ee098eB6d411C3727b78Ee665771F5cB0501";
         cluster.oracleProviders[sUSDe    ] = "0xE2AE033D4Bfa83a1777a8f574dfed7ADC855D80c";
         cluster.oracleProviders[USDe   ] = "0x6851aA9162c6c9969125e6e934846ebA13c88a8d";
-        cluster.oracleProviders[PT-sUSDE   ] = "0x5574190340fcCE41c5f90312Edb3924f5FAA9bbd";
+        cluster.oracleProviders[PT_sUSDE   ] = "0x5574190340fcCE41c5f90312Edb3924f5FAA9bbd";
 
 
 
@@ -84,7 +84,7 @@ contract Cluster is ManageClusterBase, AddressesBNB {
         cluster.supplyCaps[BTCB    ] = 300;
         cluster.supplyCaps[sUSDe    ] = 15_000_000;
         cluster.supplyCaps[USDe    ] = 15_000_000;
-        cluster.supplyCaps[PT-sUSDE    ] = 15_000_000;
+        cluster.supplyCaps[PT_sUSDE    ] = 15_000_000;
 
         // define borrow caps here. 0 means no borrow can occur, type(uint256).max means no cap defined hence max amount
         cluster.borrowCaps[WBNB    ] = 37_500;
@@ -96,7 +96,7 @@ contract Cluster is ManageClusterBase, AddressesBNB {
         cluster.borrowCaps[BTCB    ] = 265;
         cluster.borrowCaps[sUSDe    ] = 13_500_000;
         cluster.borrowCaps[USDe    ] = 13_500_000;
-        cluster.borrowCaps[PT-sUSDE    ] = type(uint256).max;
+        cluster.borrowCaps[PT_sUSDE    ] = type(uint256).max;
 
 
 
