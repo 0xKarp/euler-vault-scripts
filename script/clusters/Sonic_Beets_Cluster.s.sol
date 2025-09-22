@@ -24,7 +24,7 @@ contract Cluster is ManageClusterBase, AddressesSonic {
     function configureCluster() internal override {
         // define the governors here
         cluster.oracleRoutersGovernor = 0xB672Ea44A1EC692A9Baf851dC90a1Ee3DB25F1C4;
-        cluster.vaultsGovernor = 0xB672Ea44A1EC692A9Baf851dC90a1Ee3DB25F1C4;
+        cluster.vaultsGovernor = 0xf5bd3a5Aed111B2A54cE0683Ec647f6642b17Dc7;
 
         // define unit of account here
         cluster.unitOfAccount = USD;

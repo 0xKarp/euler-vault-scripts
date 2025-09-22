@@ -122,7 +122,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
         cluster.supplyCaps[PT_wOS      ] = 1_000_000;
         cluster.supplyCaps[PT_stS      ] = 5_000_000;
         cluster.supplyCaps[PT_aUSDC      ] = 15_000_000;
-        cluster.supplyCaps[x33      ] = 90_000;
+        cluster.supplyCaps[x33      ] = 81_000;
         cluster.supplyCaps[XUSD      ] = 0;
         cluster.supplyCaps[new_XUSD      ] = 16_000_000;
         cluster.supplyCaps[yUSD      ] = 8_000_000;
@@ -133,8 +133,6 @@ contract Cluster is ManageClusterBase, AddressesSonic
         cluster.supplyCaps[hlp0      ] = 3_000_000;
         cluster.supplyCaps[xBTC      ] = 10;
         cluster.supplyCaps[xETH      ] = 500;
-
-
 
 
 
@@ -184,7 +182,8 @@ contract Cluster is ManageClusterBase, AddressesSonic
             uint256[4] memory irmMajor  = [uint256(0), uint256(706470369), uint256(23557417865), uint256(3865470566)];
 
             cluster.kinkIRMParams[WETH     ] = irmETH;
-            cluster.kinkIRMParams[USDC     ] = irmMajor;
+
+            cluster.kinkIRMParams[USDC     ] = irmUSDC;
             cluster.kinkIRMParams[scETH    ] = irmETH;
             cluster.kinkIRMParams[scUSD    ] = irmMajor;
             cluster.kinkIRMParams[wS       ] = irmwS;
@@ -193,6 +192,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
         cluster.rampDuration = 1 days;
+ 
 
         // define the spread between borrow and liquidation LTV
         cluster.spreadLTV = 0.01e4;
@@ -226,7 +226,7 @@ contract Cluster is ManageClusterBase, AddressesSonic
             /* 22  hlp0           */ [uint16(0.000e4), 0.915e4, 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 23  xBTC           */ [uint16(0.000e4), 0.780e4, 0.000e4, 0.780e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4],
             /* 24  xETH           */ [uint16(0.915e4), 0.000e4, 0.915e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4, 0.000e4]
-
+  
         ];
 
         cluster.borrowLTVsOverride[1][3] = 0;
