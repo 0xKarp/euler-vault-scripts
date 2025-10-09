@@ -1,0 +1,8 @@
+{
+  "lib/evk-periphery": {
+    "rev": "5c9590fb1ada5e573cc3a5778124e0071eda2060"
+  },
+  "lib/forge-std": {
+    "rev": "3b20d60d14b343ee4f908cb8079495c07f5e8981"
+  }
+}
